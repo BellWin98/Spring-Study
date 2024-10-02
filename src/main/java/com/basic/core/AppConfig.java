@@ -2,6 +2,7 @@ package com.basic.core;
 
 import com.basic.core.discount.DiscountPolicy;
 import com.basic.core.discount.FixDiscountPolicy;
+import com.basic.core.discount.RateDiscountPolicy;
 import com.basic.core.member.MemberRepository;
 import com.basic.core.member.MemberService;
 import com.basic.core.member.MemberServiceImpl;
@@ -30,6 +31,6 @@ public class AppConfig {
     }
 
     private DiscountPolicy getDiscountPolicy() {
-        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
