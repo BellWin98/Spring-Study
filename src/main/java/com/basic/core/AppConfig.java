@@ -1,6 +1,8 @@
 package com.basic.core;
 
+import com.basic.core.discount.DiscountPolicy;
 import com.basic.core.discount.FixDiscountPolicy;
+import com.basic.core.member.MemberRepository;
 import com.basic.core.member.MemberService;
 import com.basic.core.member.MemberServiceImpl;
 import com.basic.core.member.MemoryMemberRepository;
@@ -15,10 +17,19 @@ import com.basic.core.order.OrderServiceImpl;
 public class AppConfig {
 
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        // ctrl + alt + m => 메서드 추출
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    private MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), getDiscountPolicy());
+    }
+
+    private DiscountPolicy getDiscountPolicy() {
+        return new FixDiscountPolicy();
     }
 }
