@@ -53,6 +53,7 @@ public class SingletonTest {
          * 싱글톤 패턴의 단점
          * 1) 싱글톤 패턴 적용을 위한 지저분한 코드 불필요
          * 2) DIP, OCP, 테스트, private 생성자로부터 자유롭게 싱글톤 사용 가능
+         * 스프링 컨테이너의 기본 빈 등록 방식은 싱글톤이지만, 매 요청마다 새로운 객체를 생성해서 반환하는 기능도 제공 (빈 스코프)
          */
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
