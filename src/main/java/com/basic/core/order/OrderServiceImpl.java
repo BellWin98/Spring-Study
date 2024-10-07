@@ -3,7 +3,10 @@ package com.basic.core.order;
 import com.basic.core.discount.DiscountPolicy;
 import com.basic.core.member.Member;
 import com.basic.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
     // 주문 서비스 클라이언트인 OrderServiceImpl은 DiscountPolicy(추상) 뿐만 아니라 구현 클래스(Fix, Rate)에도 의존
     // DIP 위반
@@ -15,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
 
+    @Autowired
     public OrderServiceImpl(final MemberRepository memberRepository, final DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
