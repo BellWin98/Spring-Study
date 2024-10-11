@@ -3,11 +3,12 @@ package com.basic.core.order;
 import com.basic.core.discount.DiscountPolicy;
 import com.basic.core.member.Member;
 import com.basic.core.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor // final이 붙은 필드를 모아서 생성자를 자동으로 만들어 줌
 public class OrderServiceImpl implements OrderService {
 
     /**
@@ -46,12 +47,11 @@ public class OrderServiceImpl implements OrderService {
      * 생성자 주입 방식 선택 이유: 프레임워크에 의존하지 않고, 순수한 자바 언어의 특징을 잘 살린 방법
      * 가끔, 옵션이 필요할 때, 수정자 주입 선택
      */
-    @Autowired
-    public OrderServiceImpl(final MemberRepository memberRepository,
+/*    public OrderServiceImpl(final MemberRepository memberRepository,
                             @Qualifier("rateDiscountPolicy") final DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }
+    }*/
 
     @Override
     public Order createOrder(final Long memberId, final String itemName, final int itemPrice) {
