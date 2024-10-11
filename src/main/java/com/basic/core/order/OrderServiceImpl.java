@@ -19,9 +19,24 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
 
+    // 수정자 주입
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired
+//    public void setDiscountPolicy(@Qualifier("rateDiscountPolicy") DiscountPolicy discountPolicy) {
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    // 생성자가 1개일 때는, @Autowired 생략 가능. 2개 있으면, 반드시 명시해주어야 함
     @Autowired
     public OrderServiceImpl(final MemberRepository memberRepository,
                             @Qualifier("rateDiscountPolicy") final DiscountPolicy discountPolicy) {
+        System.out.println("1. OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
